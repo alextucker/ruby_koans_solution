@@ -14,9 +14,19 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  # WRITE THIS CODE
-end
+
+# Approach inspired by @defeated 
+   sides = [a,b,c].sort # Sort and array of the sides
+   raise TriangleError if sides.any? {|s| s <= 0 }
+   raise TriangleError unless sides[0] + sides[1] > sides[2]
+
+   case sides.uniq.size
+   when 1; :equilateral
+   when 2; :isosceles
+   when 3; :scalene
+   end
+   end
 
 # Error class used in part 2.  No need to change this code.
-class TriangleError < StandardError
-end
+   class TriangleError < StandardError
+   end
